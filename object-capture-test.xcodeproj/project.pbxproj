@@ -14,6 +14,13 @@
 		D957AC5E27E3947F001971F5 /* ImageCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC5C27E3947F001971F5 /* ImageCaptureView.swift */; };
 		D957AC5F27E3947F001971F5 /* ObjectCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC5D27E3947F001971F5 /* ObjectCaptureView.swift */; };
 		D957AC6227E3A3BF001971F5 /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC6127E3A3BF001971F5 /* PhotoCaptureProcessor.swift */; };
+		D957AC6427E3E433001971F5 /* DepthImageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC6327E3E433001971F5 /* DepthImageSender.swift */; };
+		D957AC6627E3E562001971F5 /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC6527E3E562001971F5 /* CaptureView.swift */; };
+		D957AC6827E3E56D001971F5 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC6727E3E56D001971F5 /* PreviewView.swift */; };
+		D957AC6A27E3E57B001971F5 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC6927E3E57B001971F5 /* LoadingView.swift */; };
+		D957AC6C27E3E58C001971F5 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC6B27E3E58C001971F5 /* ResultsView.swift */; };
+		D957AC6E27E3E767001971F5 /* ImageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC6D27E3E767001971F5 /* ImageList.swift */; };
+		D957AC7027E3E80E001971F5 /* ARQuickLookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC6F27E3E80E001971F5 /* ARQuickLookView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,13 @@
 		D957AC5D27E3947F001971F5 /* ObjectCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectCaptureView.swift; sourceTree = "<group>"; };
 		D957AC6027E394DB001971F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D957AC6127E3A3BF001971F5 /* PhotoCaptureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureProcessor.swift; sourceTree = "<group>"; };
+		D957AC6327E3E433001971F5 /* DepthImageSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthImageSender.swift; sourceTree = "<group>"; };
+		D957AC6527E3E562001971F5 /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
+		D957AC6727E3E56D001971F5 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		D957AC6927E3E57B001971F5 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		D957AC6B27E3E58C001971F5 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		D957AC6D27E3E767001971F5 /* ImageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageList.swift; sourceTree = "<group>"; };
+		D957AC6F27E3E80E001971F5 /* ARQuickLookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARQuickLookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +80,13 @@
 				D957AC5227E3946F001971F5 /* Assets.xcassets */,
 				D957AC5427E3946F001971F5 /* Preview Content */,
 				D957AC6127E3A3BF001971F5 /* PhotoCaptureProcessor.swift */,
+				D957AC6D27E3E767001971F5 /* ImageList.swift */,
+				D957AC6327E3E433001971F5 /* DepthImageSender.swift */,
+				D957AC6527E3E562001971F5 /* CaptureView.swift */,
+				D957AC6727E3E56D001971F5 /* PreviewView.swift */,
+				D957AC6927E3E57B001971F5 /* LoadingView.swift */,
+				D957AC6B27E3E58C001971F5 /* ResultsView.swift */,
+				D957AC6F27E3E80E001971F5 /* ARQuickLookView.swift */,
 			);
 			path = "object-capture-test";
 			sourceTree = "<group>";
@@ -149,10 +170,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D957AC5F27E3947F001971F5 /* ObjectCaptureView.swift in Sources */,
+				D957AC6827E3E56D001971F5 /* PreviewView.swift in Sources */,
 				D957AC6227E3A3BF001971F5 /* PhotoCaptureProcessor.swift in Sources */,
+				D957AC6C27E3E58C001971F5 /* ResultsView.swift in Sources */,
+				D957AC7027E3E80E001971F5 /* ARQuickLookView.swift in Sources */,
+				D957AC6E27E3E767001971F5 /* ImageList.swift in Sources */,
+				D957AC6627E3E562001971F5 /* CaptureView.swift in Sources */,
 				D957AC5E27E3947F001971F5 /* ImageCaptureView.swift in Sources */,
 				D957AC5127E3946E001971F5 /* ContentView.swift in Sources */,
+				D957AC6427E3E433001971F5 /* DepthImageSender.swift in Sources */,
 				D957AC4F27E3946E001971F5 /* object_capture_testApp.swift in Sources */,
+				D957AC6A27E3E57B001971F5 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,11 +313,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "object-capture-test/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to scan 3D objects";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,11 +345,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "object-capture-test/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to scan 3D objects";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -8,30 +8,28 @@
 import SwiftUI
 import AVKit
 
+enum DisplayMode {
+    case capture
+    case preview
+    case loading
+    case results
+}
+
 struct ObjectCaptureView: View {
-    @State var image: AVCapturePhoto? = nil
-    let imageCaptureView = ImageCaptureView()
+    @State var images: [AVCapturePhoto] = []
+    @State var displayMode = DisplayMode.capture
+    @State var timer: Timer? = nil
     
     var body: some View {
-        if let theImage = image {
-            VStack {
-                Image(uiImage: UIImage(cgImage: theImage.cgImageRepresentation()!))
-                    .resizable()
-                    .frame(width: 300, height: 240)
-                Button("Back") {
-                    image = nil
-                }
-            }
-        } else {
-            VStack {
-                imageCaptureView
-                Button("Snap") {
-                    Task {
-                        image = await imageCaptureView.takePicture()
-                        print("picture taken: \(image != nil)")
-                    }
-                }
-            }
+        switch displayMode {
+        case .capture:
+            CaptureView(images: $images, displayMode: $displayMode, timer: $timer)
+        case .preview:
+            PreviewView(images: $images, displayMode: $displayMode)
+        case .loading:
+            LoadingView(images: $images)
+        case .results:
+            ResultsView()
         }
     }
 }

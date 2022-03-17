@@ -12,7 +12,7 @@ struct ImageCaptureView: UIViewRepresentable {
     let imageCaptureUIView = ImageCaptureUIView()
 
     func makeUIView(context: UIViewRepresentableContext<ImageCaptureView>) -> ImageCaptureUIView {
-        ImageCaptureUIView()
+        imageCaptureUIView
     }
 
     func updateUIView(_ uiView: ImageCaptureUIView, context: UIViewRepresentableContext<ImageCaptureView>) {}
@@ -37,12 +37,12 @@ class ImageCaptureUIView: UIView {
         super.init(frame: .zero)
         
         if !hasAccessToCamera() {
-            return
+            fatalError("No Camera Access!")
         }
+        
         captureSession = AVCaptureSession()
         // Select a depth-capable capture device.
-        guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
-            for: .video, position: .unspecified)
+        guard let videoDevice = AVCaptureDevice.default(.builtInLiDARDepthCamera, for: .video, position: .unspecified)
             else { fatalError("No dual camera.") }
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
               captureSession.canAddInput(videoDeviceInput)
@@ -59,8 +59,6 @@ class ImageCaptureUIView: UIView {
         captureSession.addOutput(photoOutput)
         captureSession.sessionPreset = .photo
         captureSession.commitConfiguration()
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -90,18 +88,21 @@ class ImageCaptureUIView: UIView {
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-
         if self.superview != nil {
-            print("START")
-            self.videoPreviewLayer.session = self.captureSession
-            self.videoPreviewLayer.videoGravity = .resizeAspect
-            self.captureSession?.startRunning()
-            print("STARTED")
+            startCaptureSession()
         } else {
-            print("STOP")
             self.captureSession?.stopRunning()
-            print("STOPPED")
         }
+        
+    }
+    
+    private func startCaptureSession() {
+        self.videoPreviewLayer.session = self.captureSession
+        self.videoPreviewLayer.videoGravity = .resizeAspect
+        print(photoOutput.isDepthDataDeliverySupported)
+        photoOutput.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
+        
+        self.captureSession?.startRunning()
     }
     
     func takePhoto() async -> AVCapturePhoto? {
@@ -115,10 +116,14 @@ class ImageCaptureUIView: UIView {
             captureProcessor.completion = { _ in
                 continuation.resume()
             }
-            self.captureSession?.startRunning()
+            if !self.captureSession.isRunning {
+                self.captureSession?.startRunning() // Don't care enough to fix it. For some reason this is getting stopped, so we'll just restart it in that case
+            }
             photoOutput.capturePhoto(with: photoSettings, delegate: captureProcessor)
         })
-        
+        if !self.captureSession.isRunning {
+            self.captureSession?.startRunning() // Don't care enough to fix it. For some reason this is getting stopped, so we'll just restart it in that case
+        }
         
         return captureProcessor.photo;
     }
