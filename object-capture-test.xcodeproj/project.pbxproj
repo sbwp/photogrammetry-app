@@ -11,6 +11,9 @@
 		D957AC5127E3946E001971F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC5027E3946E001971F5 /* ContentView.swift */; };
 		D957AC5327E3946F001971F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D957AC5227E3946F001971F5 /* Assets.xcassets */; };
 		D957AC5627E3946F001971F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D957AC5527E3946F001971F5 /* Preview Assets.xcassets */; };
+		D957AC5E27E3947F001971F5 /* ImageCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC5C27E3947F001971F5 /* ImageCaptureView.swift */; };
+		D957AC5F27E3947F001971F5 /* ObjectCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC5D27E3947F001971F5 /* ObjectCaptureView.swift */; };
+		D957AC6227E3A3BF001971F5 /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC6127E3A3BF001971F5 /* PhotoCaptureProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,10 @@
 		D957AC5027E3946E001971F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D957AC5227E3946F001971F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D957AC5527E3946F001971F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D957AC5C27E3947F001971F5 /* ImageCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCaptureView.swift; sourceTree = "<group>"; };
+		D957AC5D27E3947F001971F5 /* ObjectCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectCaptureView.swift; sourceTree = "<group>"; };
+		D957AC6027E394DB001971F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D957AC6127E3A3BF001971F5 /* PhotoCaptureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +58,14 @@
 		D957AC4D27E3946E001971F5 /* object-capture-test */ = {
 			isa = PBXGroup;
 			children = (
+				D957AC6027E394DB001971F5 /* Info.plist */,
+				D957AC5C27E3947F001971F5 /* ImageCaptureView.swift */,
+				D957AC5D27E3947F001971F5 /* ObjectCaptureView.swift */,
 				D957AC4E27E3946E001971F5 /* object_capture_testApp.swift */,
 				D957AC5027E3946E001971F5 /* ContentView.swift */,
 				D957AC5227E3946F001971F5 /* Assets.xcassets */,
 				D957AC5427E3946F001971F5 /* Preview Content */,
+				D957AC6127E3A3BF001971F5 /* PhotoCaptureProcessor.swift */,
 			);
 			path = "object-capture-test";
 			sourceTree = "<group>";
@@ -137,6 +148,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D957AC5F27E3947F001971F5 /* ObjectCaptureView.swift in Sources */,
+				D957AC6227E3A3BF001971F5 /* PhotoCaptureProcessor.swift in Sources */,
+				D957AC5E27E3947F001971F5 /* ImageCaptureView.swift in Sources */,
 				D957AC5127E3946E001971F5 /* ContentView.swift in Sources */,
 				D957AC4F27E3946E001971F5 /* object_capture_testApp.swift in Sources */,
 			);
@@ -270,6 +284,7 @@
 				DEVELOPMENT_TEAM = SJ2JB357J3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "object-capture-test/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +314,7 @@
 				DEVELOPMENT_TEAM = SJ2JB357J3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "object-capture-test/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
