@@ -8,12 +8,12 @@
 import SwiftUI
 
 extension View {
-    func ocButtonStyle(_ color: Color) -> some View {
+    func ocButtonStyle(_ color: Color, textColor: Color = .white) -> some View {
         self
-            .padding()
+            .padding(12)
             .background(color)
             .cornerRadius(15)
-            .foregroundColor(.white)
+            .foregroundColor(textColor)
             .padding()
     }
 }

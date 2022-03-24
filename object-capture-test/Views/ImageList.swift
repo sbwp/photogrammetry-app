@@ -18,9 +18,9 @@ struct ImageList: View {
                 if let uiImage = UIImage(data: image) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .frame(width: 240, height: 300)
+                        .aspectRatio(contentMode: .fit)
                 } else {
-                    Text("Failed to parse image")
+                    Text("Corrupt image")
                 }
             }
             .onDelete { offsets in
@@ -29,6 +29,8 @@ struct ImageList: View {
             .onMove { offsets, toOffset in
                 document.moveItemsAt(offsets: offsets, toOffset: toOffset, undo: undo)
             }
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -40,6 +42,8 @@ struct ImageList: View {
 
 struct ImageList_Previews: PreviewProvider {
     static var previews: some View {
-        ImageList()
+        return ImageList()
+            .preferredColorScheme(.dark)
+            .environmentObject(ObjectCaptureProjectFile.preview)
     }
 }

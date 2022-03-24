@@ -31,7 +31,7 @@ struct CaptureView: View {
         VStack {
             HStack {
                 ZStack {
-                    Text("LIDAR")
+                    Text("LiDAR")
                         .font(.system(size: 18, weight: .light))
                         .foregroundColor(deviceType == .builtInLiDARDepthCamera ? .primary : .secondary)
                     Image(systemName: "line.diagonal")
@@ -64,9 +64,9 @@ struct CaptureView: View {
             } else {
                 HStack {
                     Button(action: repeatPhotos) {
-                        Image(systemName: "repeat.circle.fill")
-                            .foregroundColor(.green)
+                        Image(systemName: "timer")
                             .font(.system(size: 48))
+                            .foregroundColor(.primary)
                     }
                     Spacer()
                     Button(action: takePhoto) {
@@ -110,7 +110,6 @@ struct CaptureView: View {
     private func stopPhotos() {
         timer?.invalidate()
         timer = nil
-        displayMode = .preview
     }
     
     private func takePhoto() {
@@ -131,5 +130,7 @@ struct CaptureView: View {
 struct CaptureView_Previews: PreviewProvider {
     static var previews: some View {
         CaptureView(displayMode: .constant(.capture), timer: .constant(nil))
+            .preferredColorScheme(.dark)
+            .environmentObject(ObjectCaptureProjectFile())
     }
 }

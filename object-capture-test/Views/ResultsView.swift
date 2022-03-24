@@ -34,5 +34,7 @@ struct ResultsView: View {
 struct ResultsView_Previews: PreviewProvider {
     static var previews: some View {
         ResultsView(displayMode: .constant(.results), service: ObjectCaptureService())
+            .preferredColorScheme(.dark)
+            .environmentObject(ObjectCaptureProjectFile())
     }
 }

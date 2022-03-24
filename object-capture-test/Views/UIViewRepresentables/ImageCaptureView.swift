@@ -33,90 +33,25 @@ struct ImageCaptureView_Previews: PreviewProvider {
 }
 
 class ImageCaptureUIView: UIView {
-    private var captureSession: AVCaptureSession!
-    private var photoInput: AVCaptureDeviceInput!
-    private var photoOutput: AVCapturePhotoOutput!
-    private var _deviceType: AVCaptureDevice.DeviceType = .builtInLiDARDepthCamera
+    private var captureService: PhotoCaptureService
     
     public var deviceType: AVCaptureDevice.DeviceType {
         get {
-            _deviceType
+            captureService.deviceType
         }
         set(value) {
-            if (value != _deviceType) {
-                _deviceType = value
-                changeCamera()
-            }
+            captureService.deviceType = value
         }
     }
     
     init() {
+        captureService = PhotoCaptureService.instance
         super.init(frame: .zero)
-        
-        if !hasAccessToCamera() {
-            fatalError("No Camera Access!")
-        }
-        
-        captureSession = AVCaptureSession()
-        // Select a depth-capable capture device.
-        guard let videoDevice = AVCaptureDevice.default(deviceType, for: .video, position: .unspecified)
-            else { fatalError("No dual camera.") }
-        
-        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
-              captureSession.canAddInput(videoDeviceInput)
-            else { fatalError("Can't add video input.") }
-        
-        photoInput = videoDeviceInput
-        captureSession.beginConfiguration()
-        captureSession.addInput(photoInput)
-
-        // Set up photo output for depth data capture.
-        photoOutput = AVCapturePhotoOutput()
-        photoOutput.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
-        
-        guard captureSession.canAddOutput(photoOutput)
-            else { fatalError("Can't add photo output.") }
-        
-        captureSession.addOutput(photoOutput)
-        captureSession.sessionPreset = .photo
-        captureSession.commitConfiguration()
-        print("F")
+        captureService.videoPreviewLayer = videoPreviewLayer
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func changeCamera() {
-        print("Changing camera from \(photoInput?.debugDescription ?? "nil") to \(deviceType.rawValue)")
-        captureSession.beginConfiguration()
-        
-        for input in captureSession.inputs {
-            captureSession.removeInput(input)
-        }
-        
-        guard let videoDevice = AVCaptureDevice.default(deviceType, for: .video, position: .unspecified) else { fatalError("Camera not supported") }
-        
-        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
-              captureSession.canAddInput(videoDeviceInput)
-            else { fatalError("Can't add video input.") }
-        
-        photoInput = videoDeviceInput
-        captureSession.addInput(photoInput)
-        captureSession.commitConfiguration()
-    }
-    
-    private func hasAccessToCamera() -> Bool {
-        var result = false
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        AVCaptureDevice.requestAccess(for: .video) { allowed in
-            result = allowed
-            dispatchGroup.leave()
-        }
-        dispatchGroup.wait()
-
-        return result
     }
     
     override class var layerClass: AnyClass {
@@ -129,52 +64,15 @@ class ImageCaptureUIView: UIView {
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        if self.superview != nil && !captureSession.isRunning {
-            startCaptureSession()
+        if self.superview != nil && !captureService.captureSession.isRunning {
+            captureService.startCaptureSession()
         } else {
-            self.captureSession?.stopRunning()
+            captureService.captureSession?.stopRunning()
         }
         
-    }
-    
-    private func startCaptureSession() {
-        self.videoPreviewLayer.session = self.captureSession
-        self.videoPreviewLayer.videoGravity = .resizeAspect
-        photoOutput.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
-        
-        print("S")
-        self.captureSession?.startRunning()
     }
     
     func takePhoto() async -> AVCapturePhoto? {
-        // Really frustrating bug, but this just randomly is false sometimes for no reason.
-        // This lets it recheck before each photo to make sure the settings are compatible so we at least get a photo and don't crash.
-        if photoOutput.isDepthDataDeliveryEnabled != photoOutput.isDepthDataDeliverySupported {
-//            print(photoOutput.isDepthDataDeliverySupported)
-            photoOutput.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
-        }
-        
-        let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
-        photoSettings.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported
-        
-        let captureProcessor = PhotoCaptureProcessor()
-        
-        
-        await withCheckedContinuation({ (continuation: CheckedContinuation<Void, Never>) in
-            captureProcessor.completion = { _ in
-                continuation.resume()
-            }
-            if !self.captureSession.isRunning {
-//                print("Start Running")
-                startCaptureSession()
-//                self.captureSession?.startRunning() // Don't care enough to fix it. For some reason this is getting stopped, so we'll just restart it in that case
-            }
-            photoOutput.capturePhoto(with: photoSettings, delegate: captureProcessor)
-        })
-        if !self.captureSession.isRunning {
-            self.captureSession?.startRunning() // Don't care enough to fix it. For some reason this is getting stopped, so we'll just restart it in that case
-        }
-        
-        return captureProcessor.photo;
+        return await captureService.takePhoto()
     }
 }

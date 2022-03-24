@@ -29,6 +29,9 @@
 		D957AC8227E9039A001971F5 /* ObjectCaptureProjectDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957AC8127E9039A001971F5 /* ObjectCaptureProjectDocument.swift */; };
 		D9A4165227E90B4600F5C7E9 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4165127E90B4600F5C7E9 /* Errors.swift */; };
 		D9A4165427E90E7C00F5C7E9 /* document-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D9A4165327E90E7C00F5C7E9 /* document-icon.png */; };
+		D9A4165727EBFFEF00F5C7E9 /* PhotoCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4165627EBFFEF00F5C7E9 /* PhotoCaptureService.swift */; };
+		D9A4165927EC0DAD00F5C7E9 /* ObjectCaptureProjectFileMockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4165827EC0DAD00F5C7E9 /* ObjectCaptureProjectFileMockedData.swift */; };
+		D9A4165B27EC114200F5C7E9 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4165A27EC114200F5C7E9 /* Blur.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		D957AC8127E9039A001971F5 /* ObjectCaptureProjectDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectCaptureProjectDocument.swift; sourceTree = "<group>"; };
 		D9A4165127E90B4600F5C7E9 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		D9A4165327E90E7C00F5C7E9 /* document-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "document-icon.png"; sourceTree = "<group>"; };
+		D9A4165627EBFFEF00F5C7E9 /* PhotoCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureService.swift; sourceTree = "<group>"; };
+		D9A4165827EC0DAD00F5C7E9 /* ObjectCaptureProjectFileMockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectCaptureProjectFileMockedData.swift; sourceTree = "<group>"; };
+		D9A4165A27EC114200F5C7E9 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,7 @@
 				D957AC4E27E3946E001971F5 /* ObjectCaptureApp.swift */,
 				D957AC6327E3E433001971F5 /* ObjectCaptureService.swift */,
 				D957AC6127E3A3BF001971F5 /* PhotoCaptureProcessor.swift */,
+				D9A4165627EBFFEF00F5C7E9 /* PhotoCaptureService.swift */,
 				D957AC8027E9035A001971F5 /* Domain */,
 				D957AC7727E43B3A001971F5 /* SystemExtensions */,
 				D957AC7327E419B0001971F5 /* Views */,
@@ -106,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				D957AC5527E3946F001971F5 /* Preview Assets.xcassets */,
+				D9A4165827EC0DAD00F5C7E9 /* ObjectCaptureProjectFileMockedData.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -129,6 +137,7 @@
 			children = (
 				D957AC6F27E3E80E001971F5 /* ARQuickLookView.swift */,
 				D957AC5C27E3947F001971F5 /* ImageCaptureView.swift */,
+				D9A4165A27EC114200F5C7E9 /* Blur.swift */,
 			);
 			path = UIViewRepresentables;
 			sourceTree = "<group>";
@@ -234,9 +243,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9A4165B27EC114200F5C7E9 /* Blur.swift in Sources */,
 				D957AC5F27E3947F001971F5 /* ObjectCaptureView.swift in Sources */,
 				D957AC6827E3E56D001971F5 /* PreviewView.swift in Sources */,
 				D957AC6227E3A3BF001971F5 /* PhotoCaptureProcessor.swift in Sources */,
+				D9A4165727EBFFEF00F5C7E9 /* PhotoCaptureService.swift in Sources */,
 				D957AC7F27E8FB10001971F5 /* UTTypeExtensions.swift in Sources */,
 				D957AC8227E9039A001971F5 /* ObjectCaptureProjectDocument.swift in Sources */,
 				D957AC6C27E3E58C001971F5 /* ResultsView.swift in Sources */,
@@ -253,6 +264,7 @@
 				D957AC7927E43B4A001971F5 /* DataExtensions.swift in Sources */,
 				D957AC7227E41327001971F5 /* StringExtensions.swift in Sources */,
 				D957AC6A27E3E57B001971F5 /* LoadingView.swift in Sources */,
+				D9A4165927EC0DAD00F5C7E9 /* ObjectCaptureProjectFileMockedData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
