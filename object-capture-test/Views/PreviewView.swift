@@ -15,7 +15,7 @@ struct PreviewView: View {
     
     var body: some View {
         ZStack {
-            ImageList()
+            ImageList(editable: true)
                 .padding(.vertical, 50)
             
             VStack {
@@ -39,35 +39,22 @@ struct PreviewView: View {
                     }
                 }
                 .padding()
-                .background(
-                    Blur(style: .systemUltraThinMaterial)
-                        .ignoresSafeArea()
-                        .shadow(color: .gray, radius: 0.6, x: 0, y: 0)
-                )
+                .background(BlurredBackground())
                 Spacer()
             }
             
             VStack {
                 Spacer()
-                HStack {
-                    Button(action: {
-                        service.sendDepthImages(document.project.images)
-                        displayMode = .loading
-                    }) {
-                        HStack {
-                            Spacer()
-                            Label("Upload", systemImage: "tray.and.arrow.up.fill")
-                            Spacer()
-                        }
-                    }
-                    .ocButtonStyle(.white, textColor: .accentColor)
-                    .font(.system(size: 24))
+                Button(action: {
+                    service.sendDepthImages(document.project.images)
+                    displayMode = .loading
+                }) {
+                    Label("Upload", systemImage: "tray.and.arrow.up.fill")
+                        .fillRow()
                 }
-                .background(
-                    Blur(style: .systemUltraThinMaterial)
-                        .ignoresSafeArea()
-                        .shadow(color: .gray, radius: 0.6, x: 0, y: -0.1)
-                )
+                .ocButtonStyle(.white, textColor: .accentColor)
+                .font(.system(size: 24))
+                .blurredRow()
             }
         }
     }

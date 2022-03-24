@@ -32,6 +32,8 @@
 		D9A4165727EBFFEF00F5C7E9 /* PhotoCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4165627EBFFEF00F5C7E9 /* PhotoCaptureService.swift */; };
 		D9A4165927EC0DAD00F5C7E9 /* ObjectCaptureProjectFileMockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4165827EC0DAD00F5C7E9 /* ObjectCaptureProjectFileMockedData.swift */; };
 		D9A4165B27EC114200F5C7E9 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4165A27EC114200F5C7E9 /* Blur.swift */; };
+		D9A4165D27EC1D0C00F5C7E9 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4165C27EC1D0C00F5C7E9 /* BackButton.swift */; };
+		D9A4166027EC1F9C00F5C7E9 /* BlurredBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4165F27EC1F9C00F5C7E9 /* BlurredBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		D9A4165627EBFFEF00F5C7E9 /* PhotoCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureService.swift; sourceTree = "<group>"; };
 		D9A4165827EC0DAD00F5C7E9 /* ObjectCaptureProjectFileMockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectCaptureProjectFileMockedData.swift; sourceTree = "<group>"; };
 		D9A4165A27EC114200F5C7E9 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
+		D9A4165C27EC1D0C00F5C7E9 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		D9A4165F27EC1F9C00F5C7E9 /* BlurredBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +125,8 @@
 		D957AC7327E419B0001971F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9A4165E27EC1D1500F5C7E9 /* Components */,
 				D957AC5D27E3947F001971F5 /* ObjectCaptureView.swift */,
-				D957AC6D27E3E767001971F5 /* ImageList.swift */,
 				D957AC7427E41A27001971F5 /* UIViewRepresentables */,
 				D957AC6527E3E562001971F5 /* CaptureView.swift */,
 				D957AC6727E3E56D001971F5 /* PreviewView.swift */,
@@ -170,6 +174,16 @@
 				D9A4165327E90E7C00F5C7E9 /* document-icon.png */,
 			);
 			path = DocumentIcons;
+			sourceTree = "<group>";
+		};
+		D9A4165E27EC1D1500F5C7E9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D9A4165C27EC1D0C00F5C7E9 /* BackButton.swift */,
+				D957AC6D27E3E767001971F5 /* ImageList.swift */,
+				D9A4165F27EC1F9C00F5C7E9 /* BlurredBackground.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,8 +272,10 @@
 				D957AC7D27E8FA8C001971F5 /* ObjectCaptureProject.swift in Sources */,
 				D957AC6627E3E562001971F5 /* CaptureView.swift in Sources */,
 				D957AC7627E430DF001971F5 /* ViewExtensions.swift in Sources */,
+				D9A4165D27EC1D0C00F5C7E9 /* BackButton.swift in Sources */,
 				D957AC5E27E3947F001971F5 /* ImageCaptureView.swift in Sources */,
 				D957AC6427E3E433001971F5 /* ObjectCaptureService.swift in Sources */,
+				D9A4166027EC1F9C00F5C7E9 /* BlurredBackground.swift in Sources */,
 				D957AC4F27E3946E001971F5 /* ObjectCaptureApp.swift in Sources */,
 				D957AC7927E43B4A001971F5 /* DataExtensions.swift in Sources */,
 				D957AC7227E41327001971F5 /* StringExtensions.swift in Sources */,

@@ -15,19 +15,26 @@ struct ResultsView: View {
     var body: some View {
         VStack {
             HStack {
-                Button("Back") {
+                BackButton {
                     displayMode = .preview
                 }
-                .padding()
                 Spacer()
+                
                 Button("Save") {
                     showExport = true
                 }
-                .padding()
             }
+            .padding()
+            
             ARQuickLookView(usdzFileUrl: service.resultUrl)
+                .fileExporter(
+                    isPresented: $showExport,
+                    document: UsdzDocument(url: service.resultUrl),
+                    contentType: .usdz,
+                    defaultFilename: "MyScene.usdz"
+                ) { _ in }
         }
-        .fileExporter(isPresented: $showExport, document: UsdzDocument(url: service.resultUrl), contentType: .usdz, defaultFilename: "MyScene.usdz") { _ in }
+        .navigationBarHidden(true)
     }
 }
 

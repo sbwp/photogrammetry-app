@@ -11,6 +11,7 @@ import AVKit
 struct ImageList: View {
     @EnvironmentObject var document: ObjectCaptureProjectFile
     @Environment(\.undoManager) var undo
+    let editable: Bool
     
     var body: some View {
         List {
@@ -19,8 +20,10 @@ struct ImageList: View {
                     Image(uiImage: uiImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .deleteDisabled(!editable)
                 } else {
                     Text("Corrupt image")
+                        .deleteDisabled(!editable)
                 }
             }
             .onDelete { offsets in
@@ -37,12 +40,13 @@ struct ImageList: View {
                 EditButton()
             }
         }
+        
     }
 }
 
 struct ImageList_Previews: PreviewProvider {
     static var previews: some View {
-        return ImageList()
+        return ImageList(editable: true)
             .preferredColorScheme(.dark)
             .environmentObject(ObjectCaptureProjectFile.preview)
     }

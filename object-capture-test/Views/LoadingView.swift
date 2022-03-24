@@ -34,24 +34,37 @@ struct LoadingView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Button("Back") {
+        ZStack {
+            ImageList(editable: false)
+                .padding(.vertical, 50)
+            
+            VStack {
+                BackButton {
                     displayMode = .preview
                 }
-                .padding()
-                Spacer()
+                .padding(.leading)
+                .padding(.top)
+                .leftAlign()
+                
+                Text(progressMessage)
+                    .padding(.bottom)
+                    .font(.headline)
             }
-            Text(progressMessage)
-                .font(.headline)
-            if processingDone && !error.isEmpty {
-                Button("Try Again") {
+            .blurredRow()
+            .ceil()
+            
+            if !error.isEmpty {
+                Button(action: {
                     error = ""
                     service.getResult()
+                }) {
+                    Label("Retry", systemImage: "repeat")
+                        .fillRow()
                 }
                 .ocButtonStyle(.accentColor)
+                .blurredRow()
+                .floor()
             }
-            ImageList()
         }
         .onAppear {
             subs.append(service.progress.sink(receiveValue: { percentage = $0 }))
@@ -73,6 +86,7 @@ struct LoadingView: View {
                 sub.cancel()
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
@@ -80,6 +94,6 @@ struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
         LoadingView(displayMode: .constant(.loading), service: ObjectCaptureService())
             .preferredColorScheme(.dark)
-            .environmentObject(ObjectCaptureProjectFile())
+            .environmentObject(ObjectCaptureProjectFile.preview)
     }
 }

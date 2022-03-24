@@ -48,6 +48,7 @@ struct CaptureView: View {
             }
             .padding(.horizontal)
             .padding(.top)
+            .padding(.bottom, -20)
             ZStack {
                 imageCaptureView
                 Rectangle() // Flash white overlay to simulate shutter or something (makes it feel like taking a photo rather than freezing, which is really what's happening)
@@ -55,17 +56,20 @@ struct CaptureView: View {
                     .background(Color.white)
                     .opacity(isTakingNow ? 0.15 : 0)
             }
-            if timer != nil {
-                Button(action: stopPhotos) {
-                    Image(systemName: "stop.circle")
-                        .foregroundColor(.red)
-                        .font(.system(size: 48))
-                }
-            } else {
-                HStack {
+            .padding(.horizontal, -10)
+            HStack {
+                if timer != nil {
+                    Spacer()
+                    Button(action: stopPhotos) {
+                        Image(systemName: "stop.circle")
+                            .foregroundColor(.red)
+                            .font(.system(size: 72))
+                    }
+                    Spacer()
+                } else {
                     Button(action: repeatPhotos) {
                         Image(systemName: "timer")
-                            .font(.system(size: 48))
+                            .font(.system(size: 36))
                             .foregroundColor(.primary)
                     }
                     Spacer()
@@ -88,10 +92,12 @@ struct CaptureView: View {
                             .foregroundColor(.primary)
                     }
                 }
-                .padding(.horizontal, 50)
-                .padding(.bottom, 40)
             }
+            .padding(.horizontal, 50)
+            .padding(.bottom, 40)
+            .frame(height: 150)
         }
+        .blurredRow()
     }
     
     private func changeCamera() {
