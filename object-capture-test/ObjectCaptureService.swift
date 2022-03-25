@@ -17,6 +17,15 @@ class ObjectCaptureService {
     var processingComplete = PassthroughSubject<Void, Never>()
     var lastRequestTime: Double = 0
     let minRequestDistance: Double = 5
+    let baseUrl = ProcessInfo.processInfo.environment["SVC_BASE_URL"] ?? "192.168.4.44"
+    let scheme = ProcessInfo.processInfo.environment["SVC_SCHEME"] ?? "http"
+    let wsScheme: String = ProcessInfo.processInfo.environment["SVC_SCHEME"] == "https" ? "wss" : "ws"
+    let port: Int = {
+        guard let str = ProcessInfo.processInfo.environment["SVC_PORT"] else {
+            return nil
+        }
+        return Int(str)
+    }() ?? 8080
     
     var resultUrl: URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("\(id.uuidString).usdz")
@@ -37,9 +46,9 @@ class ObjectCaptureService {
         }
         
         var urlComps = URLComponents()
-        urlComps.scheme = "http"
-        urlComps.host = "192.168.4.44"
-        urlComps.port = 8080
+        urlComps.scheme = scheme
+        urlComps.host = baseUrl
+        urlComps.port = port
         urlComps.path = "/upload"
         guard let url = urlComps.url else { return }
         
@@ -96,9 +105,9 @@ class ObjectCaptureService {
     
     private func openProgressConnection() {
         var urlComps = URLComponents()
-        urlComps.scheme = "ws"
-        urlComps.host = "192.168.4.44"
-        urlComps.port = 8080
+        urlComps.scheme = wsScheme
+        urlComps.host = baseUrl
+        urlComps.port = port
         urlComps.path = "/progress"
         urlComps.queryItems = [
             URLQueryItem(name: "id", value: id.uuidString),
@@ -157,9 +166,9 @@ class ObjectCaptureService {
     
     public func getResult() {
         var urlComps = URLComponents()
-        urlComps.scheme = "http"
-        urlComps.host = "192.168.4.44"
-        urlComps.port = 8080
+        urlComps.scheme = scheme
+        urlComps.host = baseUrl
+        urlComps.port = port
         urlComps.path = "/result"
         urlComps.queryItems = [
             URLQueryItem(name: "id", value: id.uuidString),

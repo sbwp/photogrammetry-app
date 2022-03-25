@@ -9,12 +9,17 @@ As a temporary workaround to use on other phones, go to `object-capture-test/Vie
 
 ## Setup
 1. Start [the companion API](https://github.com/sbwp/photogrammetry-api)
-2. Open the project in Xcode
-3. Attach a compatible phone
-4. Change the bundle identifier to something under a domain you own
+1. Open the project in Xcode
+1. Click on the project name in the top bar in Xcode and choose "Edit Scheme..."
+1. Choose the "Run" scheme, and then the "Arguments" tab
+1. Under "Environment Variables", add the following 3 required environment variables:
+    - `SVC_BASE_URL` - The IP the service is being hosted on, e.g. `192.168.4.44`.
+    - `SVC_SCHEME` - Either `http` or `https` depending on whether you've set up HTTPS, e.g. `http`.
+    - `SVC_PORT` - The port the service is being exposed as, e.g. `8080`.
+1. Attach a compatible phone
+1. Under Signing & Capabilities, change the team to yours and the bundle identifier to something under a domain you own
     - Not sure if there actually are any entitlements enabled that require registering but if you're going to change the code and possibly add such capabilities, please change it.
-5. Under Signing & Capabilities, change the team to yours
-6. Build & Run
+1. Build & Run
 
 ## Usage
 Upon opening the app, you will see the standard Files app file picker. A new Object Capture Project file with the `.ocproj` extension should appear. Tap on this to open it.
